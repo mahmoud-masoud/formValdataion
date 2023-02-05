@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2 class="main__title">Register With Us</h2>
+
+      <form action="">
+        <div class="input__box">
+          <label for="name"> Username</label>
+          <input
+            type="text"
+            id="name"
+            class="user__name"
+            placeholder="Enter username"
+          />
+          <small class="error__msg">Error</small>
+        </div>
+
+        <div class="input__box">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            class="user__email"
+            placeholder="Enter email"
+          />
+          <small class="error__msg">Error </small>
+        </div>
+
+        <div class="input__box">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="password"
+            placeholder="Enter password"
+          />
+          <small class="error__msg">Error</small>
+        </div>
+
+        <div class="input__box">
+          <label for="confirm__password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            class="confirm__password"
+            placeholder="Enter the password again"
+          />
+          <small class="error__msg">Error</small>
+        </div>
+
+        <button type="submit" class="login__btn">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
