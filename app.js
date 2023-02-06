@@ -16,13 +16,14 @@ const showSuccess = (input) => {
   inputBox.classList = "input__box success";
 };
 
+// Get the input name by Id to be showing in error message
 const getInputName = (input) => {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 };
 
 const checkRequired = (...inputs) => {
   inputs.forEach((input) => {
-    //first condition is to change the error message content in password confirmation
+    //First condition is to change the error message content in password confirmation
     if (confirmPassword.id === input.id && input.value === "") {
       showError(input, "Please enter the same password");
     } else if (input.value === "") {
@@ -35,7 +36,7 @@ const checkRequired = (...inputs) => {
 
 const checkUserName = (input, min, max) => {
   if (input.value.length < min || input.value.length > max) {
-    showError(input, `Please enter a name between ${min} and ${max} character`);
+    showError(input, `Enter a name between ${min} and ${max} character`);
   } else {
     showSuccess(input);
     return true;
@@ -72,25 +73,26 @@ const checkPasswordConfirmation = (input1, input2) => {
     showError(input2, "Please enter the same password");
   }
 };
-let preventDefault = true;
-form.addEventListener("submit", (event) => {
-  checkRequired(userName, userEmail, password, confirmPassword);
-  checkUserName(userName, 3, 15);
-  checkEmail(userEmail);
-  checkUserPassword(password, 8, 25);
-  checkPasswordConfirmation(password, confirmPassword);
 
+const preventDefaultCheck = () => {
+  let flag = true;
   if (
     checkUserName(userName, 3, 15) &&
     checkEmail(userEmail) &&
     checkUserPassword(password, 8, 25) &&
     checkPasswordConfirmation(password, confirmPassword)
   ) {
-    preventDefault = false;
-    console.log("all works");
+    flag = false;
+  } else {
+    flag ? event.preventDefault() : "";
   }
+};
 
-  if (preventDefault) {
-    event.preventDefault();
-  }
+form.addEventListener("submit", (event) => {
+  checkRequired(userName, userEmail, password, confirmPassword);
+  checkUserName(userName, 3, 15);
+  checkEmail(userEmail);
+  checkUserPassword(password, 8, 25);
+  checkPasswordConfirmation(password, confirmPassword);
+  preventDefaultCheck();
 });
